@@ -1,6 +1,6 @@
 # Publishing studio8.com.kw on GitHub Pages
 
-Replace `USERNAME` below with your GitHub username (or org name).
+Repo: `IMNOTXS/Studio8` — values below are filled in.
 Do the steps **in this order** — GitHub first, DNS second.
 
 ---
@@ -11,17 +11,43 @@ GitHub is explicit about the ordering: adding the domain at your DNS
 provider before claiming it in GitHub can let someone else host a site
 on your subdomain.
 
-1. Commit `.nojekyll` (already in this folder) and push.
-   It skips the Jekyll build step — faster deploys, no surprises.
-2. Repo → **Settings** → **Pages**
-3. **Source**: Deploy from a branch → `main` → `/ (root)` → **Save**
-4. Wait ~1 minute, then confirm the site loads at
-   `https://USERNAME.github.io/REPO/`
-   Check the Arabic homepage *and* click through to `/en/` before continuing.
-5. Under **Custom domain**, enter `studio8.com.kw` → **Save**
-   - This commits a `CNAME` file to the repo root
-   - GitHub will report "DNS check in progress" — expected, DNS isn't changed yet
-   - Leave **Enforce HTTPS** unchecked for now
+- [x] **Custom domain set.** GitHub already created the `CNAME` file on the
+      remote containing `studio8.com.kw`. This is what caused the rejected
+      push — see "Resolving the push rejection" below.
+- [ ] **Confirm the publishing source.** Repo → **Settings** → **Pages** →
+      Source: Deploy from a branch → `main` → `/ (root)` → **Save**
+- [ ] **Confirm the build works** at `https://imnotxs.github.io/Studio8/`
+      Check the Arabic homepage *and* click through to `/en/` before
+      touching DNS.
+- [ ] Leave **Enforce HTTPS** unchecked until DNS has propagated.
+
+### Resolving the push rejection
+
+The remote has two commits your local clone doesn't: GitHub's `CNAME`
+commit, and your README edit. Your local commit only touches HTML and
+`logo.png`, so there is no file overlap and no possible conflict.
+
+```sh
+git pull --rebase
+git push
+```
+
+`--rebase` replays your commit on top of the remote's, keeping history
+linear instead of adding a merge commit.
+
+Note: pulling will also bring down your emptied `README.md`, replacing
+the local 34-line version.
+
+### While you're there — stop tracking .DS_Store
+
+macOS junk files got committed by `git add .`. A `.gitignore` is now in
+the folder; this untracks the two already committed:
+
+```sh
+git rm --cached .DS_Store assets/.DS_Store
+git add .gitignore
+git commit -m "Ignore .DS_Store"
+```
 
 ---
 
@@ -38,7 +64,7 @@ Zone: `studio8.com.kw`
 | **Add** | A | `studio8.com.kw` | `185.199.109.153` |
 | **Add** | A | `studio8.com.kw` | `185.199.110.153` |
 | **Add** | A | `studio8.com.kw` | `185.199.111.153` |
-| **Edit** | CNAME | `www.studio8.com.kw` | `USERNAME.github.io` *(currently points to `studio8.com.kw`)* |
+| **Edit** | CNAME | `www.studio8.com.kw` | `imnotxs.github.io` *(currently points to `studio8.com.kw`)* |
 
 All four A records are required — GitHub load-balances across them.
 
@@ -54,7 +80,7 @@ All four A records are required — GitHub load-balances across them.
 It currently points at the apex. GitHub's docs warn that pointing a
 subdomain at your apex domain causes HTTPS enforcement to fail and the
 subdomain may not reach the site at all. It must point to
-`USERNAME.github.io` directly — no repo name.
+`imnotxs.github.io` directly — no repo name.
 
 ---
 
@@ -68,7 +94,7 @@ dig studio8.com.kw +noall +answer -t A
 # expect the four 185.199.10x.153 addresses
 
 dig www.studio8.com.kw +noall +answer
-# expect CNAME -> USERNAME.github.io
+# expect CNAME -> imnotxs.github.io
 
 dig studio8.com.kw +noall +answer -t MX
 # expect 1 smtp.google.com  — confirms email is untouched
