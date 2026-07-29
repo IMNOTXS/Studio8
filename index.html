@@ -39,7 +39,7 @@
     max-width:1280px;margin:0 auto;padding:14px 40px;
     display:flex;align-items:center;justify-content:space-between;
   }
-  .nav-logo{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;}.nav-logo img{height:34px;width:auto;}.nav-logo .logo-word{font-size:13px;font-weight:800;color:var(--ink);}
+  .nav-logo{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;}.nav-logo img{height:34px;width:auto;}.nav-logo .logo-word{font-size:16px;font-weight:800;color:var(--ink);}
   nav ul{list-style:none;display:flex;gap:38px;}
   nav a{font-weight:700;font-size:18px;color:var(--ink);position:relative;padding:6px 2px;transition:color .2s;}nav a.active{color:var(--red);}
   nav a::after{content:'';position:absolute;right:0;bottom:0;width:0;height:2px;background:var(--red);transition:width .25s;}
@@ -147,7 +147,7 @@
   footer{
     text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;
   }
-</style>
+footer .social{display:flex;justify-content:center;gap:14px;margin-bottom:20px;}footer .social a{width:34px;height:34px;border-radius:10px;overflow:hidden;display:block;box-shadow:0 3px 8px rgba(35,31,31,.14);transition:transform .2s,box-shadow .2s;}footer .social a:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(35,31,31,.22);}footer .social img{width:100%;height:100%;object-fit:cover;display:block;}</style>
 </head>
 <body>
 
@@ -225,7 +225,14 @@
 </div>
 
 <footer id="contact">
-  © 2026 ستوديو 8 — جميع الحقوق محفوظة
+    <div class="social">
+      <a href="https://www.instagram.com/studio8_kuwait/" target="_blank" rel="noopener noreferrer" aria-label="ستوديو 8 على انستقرام"><img src="assets/img/img-1.jpg" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/@studio8_kuwait" target="_blank" rel="noopener noreferrer" aria-label="ستوديو 8 على تيك توك"><img src="assets/img/img-2.png" alt="TikTok"></a>
+      <a href="https://www.threads.com/@studio8_kuwait" target="_blank" rel="noopener noreferrer" aria-label="ستوديو 8 على ثريدز"><img src="assets/img/img-3.png" alt="Threads"></a>
+      <a href="https://x.com/Studio8_kuwait" target="_blank" rel="noopener noreferrer" aria-label="ستوديو 8 على إكس"><img src="assets/img/img-4.jpg" alt="X"></a>
+      <a href="https://www.youtube.com/@studio8_kuwait" target="_blank" rel="noopener noreferrer" aria-label="ستوديو 8 على يوتيوب"><img src="assets/img/img-5.png" alt="YouTube"></a>
+    </div>
+    © 2026 ستوديو 8 — جميع الحقوق محفوظة
 </footer>
 
 </body>
