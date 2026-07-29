@@ -62,7 +62,7 @@
   .split-visual{
     flex:1.1;
     position:relative;
-    background:radial-gradient(circle at 50% 20%, #fff7e6 0%, var(--cream) 65%);
+    background:var(--red);
     overflow:hidden;
     padding:110px 40px 40px;
     display:flex;
@@ -99,7 +99,7 @@
 
   .split-info{
     flex:1;
-    background:var(--cream);
+    background:var(--red);
     padding:150px 60px 60px;
     display:flex;
     flex-direction:column;
@@ -107,22 +107,22 @@
   }
   .split-info .eyebrow{
     display:inline-flex;align-items:center;gap:8px;width:fit-content;
-    font-weight:800;font-size:17px;color:var(--red);
-    background:rgba(195,28,43,0.08);border-radius:30px;padding:8px 18px;margin-bottom:22px;
+    font-weight:800;font-size:17px;color:var(--yellow);
+    background:rgba(255,255,255,0.1);border-radius:30px;padding:8px 18px;margin-bottom:22px;
   }
-  .split-info .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;}
+  .split-info .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);display:inline-block;}
   .split-info h1{
-    font-size:46px;font-weight:900;line-height:1.2;color:var(--ink);margin-bottom:16px;
+    font-size:46px;font-weight:900;line-height:1.2;color:#fff;margin-bottom:16px;
   }
   .split-info h1 span{
-    color:var(--red);position:relative;display:inline-block;
+    color:var(--yellow);position:relative;display:inline-block;
   }
   .split-info h1 span::after{
     content:'';position:absolute;right:2px;left:2px;bottom:2px;height:10px;
     background:var(--yellow);border-radius:10px;z-index:-1;opacity:.55;
     transform:rotate(-1.2deg);
   }
-  .split-info > p{font-size:18px;color:var(--muted);font-weight:600;line-height:1.9;margin-bottom:40px;max-width:460px;}
+  .split-info > p{font-size:18px;color:rgba(255,255,255,0.75);font-weight:600;line-height:1.9;margin-bottom:40px;max-width:460px;}
 
   .contact-list{list-style:none;display:flex;flex-direction:column;gap:20px;max-width:460px;}
   .contact-list li{
@@ -164,6 +164,7 @@ footer .social{display:flex;justify-content:center;gap:14px;margin-bottom:20px;}
     <a href="index.html" class="nav-logo"><img src="../assets/img/logo-mark.png" alt="Studio 8"><span class="logo-word">Studio</span></a>
     <nav>
       <ul>
+        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="platforms.html">Our Platforms</a></li>
         <li><a href="services.html">Services</a></li>
