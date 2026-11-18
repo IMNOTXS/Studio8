@@ -95,7 +95,26 @@
   footer{text-align:center;padding:20px 20px 16px;color:var(--muted);font-size:12px;}
 footer .social{display:flex;justify-content:center;gap:14px;margin-bottom:20px;}footer .social a{width:34px;height:34px;border-radius:10px;overflow:hidden;display:block;box-shadow:0 3px 8px rgba(35,31,31,.14);transition:transform .2s,box-shadow .2s;}footer .social a:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(35,31,31,.22);}footer .social img{width:100%;height:100%;object-fit:cover;display:block;}</style>
 
+<style>
+  /* ===== MOBILE MENU ===== */
+  @media (max-width:860px){
+    nav ul{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;
+      background:rgba(253,249,242,0.98);
+      padding:6px 24px 14px;
+      border-bottom:1px solid rgba(35,31,31,0.08);
+      box-shadow:0 14px 28px rgba(35,31,31,0.10);
+    }
+    header.menu-open nav ul{display:flex;}
+    nav ul li + li{border-top:1px solid rgba(35,31,31,0.06);}
+    nav ul a{display:block;padding:14px 4px;}
+    nav a::after{display:none;}
+    .burger{width:40px;height:40px;line-height:1;}
+  }
+</style>
 </head>
+
 <body>
 
 <header>
@@ -111,7 +130,7 @@ footer .social{display:flex;justify-content:center;gap:14px;margin-bottom:20px;}
     </nav>
     <a href="contact.html" class="nav-cta">Contact Us</a>
     <a href="../about.html" class="lang-switch">AR</a>
-    <button class="burger">&#9776;</button>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false">&#9776;</button>
   </div>
 </header>
 
@@ -159,5 +178,34 @@ footer .social{display:flex;justify-content:center;gap:14px;margin-bottom:20px;}
     <div style="margin-top:6px;">Studio 8 Commercial Registration: 457042 - Commercial License: 2022/2123</div>
 </footer>
 
+<script>
+(function(){
+  var header=document.querySelector('header'),
+      btn=header&&header.querySelector('.burger');
+  if(!btn) return;
+  function setOpen(open){
+    header.classList.toggle('menu-open',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.innerHTML=open?'&#10005;':'&#9776;';
+  }
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    setOpen(!header.classList.contains('menu-open'));
+  });
+  header.querySelectorAll('nav a').forEach(function(a){
+    a.addEventListener('click',function(){setOpen(false);});
+  });
+  document.addEventListener('click',function(e){
+    if(!header.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') setOpen(false);
+  });
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>860) setOpen(false);
+  });
+})();
+</script>
 </body>
+
 </html>
